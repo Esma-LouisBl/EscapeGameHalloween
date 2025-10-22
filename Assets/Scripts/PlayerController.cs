@@ -4,9 +4,6 @@ using System.Collections;
 public class CursorController : MonoBehaviour
 {
     [SerializeField]
-    private Texture2D _customCursor;
-
-    [SerializeField]
     private Transform _cameraPivot;
 
     [SerializeField]
