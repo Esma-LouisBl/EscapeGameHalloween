@@ -1,7 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class GoBack : MonoBehaviour
 {
+    [SerializeField]
+    private Transform _playerTransform, _destinationTransform;
+    private Vector3 _range;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -12,5 +16,21 @@ public class GoBack : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Return()
+    {
+        _range = _destinationTransform.position - _playerTransform.position;
+        _range /= 100;
+        StartCoroutine(Moving());
+    }
+
+    private IEnumerator Moving()
+    {   
+        while (_playerTransform.position != _destinationTransform.position)
+        {
+            _playerTransform.position = _playerTransform.position + _range;
+            yield return new WaitForSeconds(.01f);
+        }
     }
 }
