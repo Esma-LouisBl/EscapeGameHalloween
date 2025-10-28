@@ -11,6 +11,9 @@ public class SpatialPoint : MonoBehaviour
     private GameObject _text;
 
     private Vector3 _range;
+
+    [SerializeField]
+    private PlayerManager _playerManager;
     void Start()
     {
         
@@ -24,11 +27,18 @@ public class SpatialPoint : MonoBehaviour
 
     private void OnMouseDown()
     {
-        _renderer.enabled = false;
-        _text.SetActive(false);
         _range = _destinationTransform.position - _playerTransform.position;
         _range /= 100;
         StartCoroutine(Moving());
+
+        if (gameObject.CompareTag("TurnRight"))
+        {
+            _playerManager.RotateToRight();
+        }
+        if (gameObject.CompareTag("TurnLeft"))
+        {
+            _playerManager.RotateToLeft();
+        }
     }
 
     private IEnumerator Moving()
@@ -38,6 +48,8 @@ public class SpatialPoint : MonoBehaviour
             _playerTransform.position = _playerTransform.position + _range;
             yield return new WaitForSeconds(.01f);
         }
+
+        _playerManager.atSpawn = false;
     }
 
 }
