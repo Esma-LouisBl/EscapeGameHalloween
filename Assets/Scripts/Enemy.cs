@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private Transform _enemyTransform;
+    [SerializeField]
+    private Light _light;
 
     public bool hasSeenPlayer = false, lookingAtPlayer = false;
     private int _time;
@@ -47,6 +49,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < 180; i++)
         {
             _enemyTransform.Rotate(0, 1, 0);
+            _light.intensity += 10;
             yield return new WaitForSeconds(.01f);
         }
 
@@ -73,6 +76,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < 180; i++)
         {
             _enemyTransform.Rotate(0, -1, 0);
+            _light.intensity -= 10;
             yield return new WaitForSeconds(.01f);
         }
         _needingNumber = true;
