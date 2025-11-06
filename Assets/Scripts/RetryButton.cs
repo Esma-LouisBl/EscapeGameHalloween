@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RetryButton : MonoBehaviour
 {
@@ -12,5 +13,10 @@ public class RetryButton : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadSceneAsync(1);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class PlayerManager : MonoBehaviour
 
             if (_enemy.lookingAtPlayer)
             {
-                Debug.Log("PERDU");
+                SceneManager.LoadSceneAsync(2);
             }
         }
 
