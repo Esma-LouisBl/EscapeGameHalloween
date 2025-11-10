@@ -13,14 +13,19 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
-    public bool hasKey = false, gameOver = false;
+    public bool hasKey = false, gameOver = false, playerCanMove = false;
 
     [SerializeField]
     private Enemy _enemy;
+
+    [SerializeField] private GameObject _startEffect;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _startEffect.SetActive(true);
+        playerCanMove = false;
         atSpawn = true;
+        StartCoroutine(LaunchingGame());
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public class PlayerManager : MonoBehaviour
             if (_enemy.lookingAtPlayer && !gameOver)
             {
                 gameOver = true;
+                playerCanMove = false;
                 StartCoroutine(Screamer());
             }
         }
@@ -78,5 +84,12 @@ public class PlayerManager : MonoBehaviour
         _audioSource.Play();
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadSceneAsync(2);
+    }
+
+    private IEnumerator LaunchingGame()
+    {
+        yield return new WaitForSeconds(3.17f);
+        playerCanMove = true;
+        _startEffect.SetActive(false);
     }
 }

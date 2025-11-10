@@ -2389,6 +2389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CursorController
   sensitivity: 2
+  _playerManager: {fileID: 1998384740}
 --- !u!1 &1067246803
 GameObject:
   m_ObjectHideFlags: 0
@@ -3915,7 +3916,9 @@ MonoBehaviour:
   _audioSource: {fileID: 1998384742}
   hasKey: 0
   gameOver: 0
+  playerCanMove: 1
   _enemy: {fileID: 1067246808}
+  _startEffect: {fileID: 940587585}
 --- !u!4 &1998384741
 Transform:
   m_ObjectHideFlags: 0
