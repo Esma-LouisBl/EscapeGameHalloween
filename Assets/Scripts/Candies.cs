@@ -21,14 +21,18 @@ public class Candies : MonoBehaviour
 
     private void OnMouseDown()
     {
-        switch (_clickNumber)
+        if (!_playerManager.atSpawn)
         {
-            case 3:
-                _playerManager.hasKey = true;
-                break;
-            case < 3:
-                _clickNumber++;
-                break;
+            switch (_clickNumber)
+            {
+                case 3:
+                    _playerManager.hasKey = true;
+                    break;
+                case < 3:
+                    _clickNumber++;
+                    break;
+            }
+            
         }
     }
 }
