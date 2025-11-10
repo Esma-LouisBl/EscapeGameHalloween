@@ -1,12 +1,17 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Candies : MonoBehaviour
 {
     [SerializeField]
     private PlayerManager _playerManager;
+    [SerializeField]
+    private AudioSource _audioSource;
 
     private int _clickNumber = 0;
+
+    private bool _canClick = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,7 +26,7 @@ public class Candies : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!_playerManager.atSpawn)
+        if (!_playerManager.atSpawn && _canClick)
         {
             switch (_clickNumber)
             {
@@ -30,9 +35,18 @@ public class Candies : MonoBehaviour
                     break;
                 case < 3:
                     _clickNumber++;
+                    _audioSource.Play();
+                    StartCoroutine(Cooldown());
                     break;
             }
             
         }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        _canClick = false;
+        yield return new WaitForSeconds(_audioSource.clip.length);
+        _canClick = true;
     }
 }
