@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
-    public bool hasKey = false;
+    public bool hasKey = false, gameOver = false;
 
     [SerializeField]
     private Enemy _enemy;
@@ -38,8 +38,9 @@ public class PlayerManager : MonoBehaviour
             _moveForward.SetActive(false);
             _moveToRight.SetActive(false);
 
-            if (_enemy.lookingAtPlayer)
+            if (_enemy.lookingAtPlayer && !gameOver)
             {
+                gameOver = true;
                 StartCoroutine(Screamer());
             }
         }
@@ -75,7 +76,7 @@ public class PlayerManager : MonoBehaviour
     private IEnumerator Screamer()
     {
         _audioSource.Play();
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2.5f);
         SceneManager.LoadSceneAsync(2);
     }
 }

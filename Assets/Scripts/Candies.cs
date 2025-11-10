@@ -36,6 +36,7 @@ public class Candies : MonoBehaviour
                     _audioSource.clip = _key;
                     _playerManager.hasKey = true;
                     _audioSource.Play();
+                    _canClick = false;
                     break;
                 case < 3:
                     _clickNumber++;
