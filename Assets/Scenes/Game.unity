@@ -214,6 +214,8 @@ MonoBehaviour:
   _playerManager: {fileID: 1998384740}
   _lockedText: {fileID: 1973070034}
   _audioSource: {fileID: 118748320}
+  _locked: {fileID: 8300000, guid: f6599c0f737625349b00ca41088a2fc7, type: 3}
+  _unlocked: {fileID: 8300000, guid: e2c098439045c6041ae38bdbc99e177a, type: 3}
 --- !u!65 &118748319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3632,8 +3634,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 0.37
+  MaxDistance: 10.5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

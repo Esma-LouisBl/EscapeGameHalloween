@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
             StartCoroutine(Wait(_time));
         }
 
-        else if (_needingNumber && !_isWaiting) //g�n�ration du temps d'attente et feinte ou non
+        else if (_needingNumber && !_isWaiting) //generation du temps d'attente et feinte ou non
         {
             _time = Random.Range(10, 41);
             _needingNumber = false;
@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
 
     private void TurnBack()
     {
+        _audioSource.Play();
         if (_feint)
         {
             StartCoroutine(FeintRotating());
@@ -66,7 +67,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Rotating()
     {
-        _audioSource.Play();
         for (int i = 0; i < 180; i++)
         {
             _enemyTransform.Rotate(0, 1, 0);
@@ -80,7 +80,6 @@ public class Enemy : MonoBehaviour
     private IEnumerator Wait(int time)
     {
         yield return new WaitForSeconds(time);
-        _audioSource.Stop();
         TurnBack();
     }
 
@@ -95,6 +94,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator Returning()
     {
+        _audioSource.Stop();
         for (int i = 0; i < 180; i++)
         {
             _enemyTransform.Rotate(0, -1, 0);
@@ -107,7 +107,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator FeintRotating()
     {
-        _audioSource.Play();
         for (int i = 0; i < 90; i++)
         {
             _enemyTransform.Rotate(0, 1, 0);

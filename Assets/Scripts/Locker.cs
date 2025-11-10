@@ -14,10 +14,12 @@ public class Locker : MonoBehaviour
     private TextMeshProUGUI _lockedText;
     [SerializeField]
     private AudioSource _audioSource;
+    [SerializeField] private AudioClip _locked, _unlocked;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _lockedText.enabled = false;
+        _audioSource.clip = _locked;
     }
 
     // Update is called once per frame
@@ -32,8 +34,7 @@ public class Locker : MonoBehaviour
         {
             if (_playerManager.hasKey)
             {
-                Destroy(gameObject);
-                _audioSource.Play();
+                StartCoroutine(Unlock());
             }
             else
             {
@@ -45,7 +46,16 @@ public class Locker : MonoBehaviour
     private IEnumerator LockedMessage()
     {
         _lockedText.enabled = true;
+        _audioSource.Play();
         yield return new WaitForSeconds(2);
         _lockedText.enabled = false;
+    }
+
+    private IEnumerator Unlock()
+    {
+        _audioSource.clip = _unlocked;
+        _audioSource.Play();
+        yield return new WaitForSeconds(_unlocked.length);
+        Destroy(gameObject);
     }
 }

@@ -35,14 +35,15 @@ public class Candies : MonoBehaviour
                 case 3:
                     _audioSource.clip = _key;
                     _playerManager.hasKey = true;
+                    _audioSource.Play();
                     break;
                 case < 3:
                     _clickNumber++;
                     StartCoroutine(Cooldown());
+                    _audioSource.Play();
                     break;
             }
             
-            _audioSource.Play();
             
         }
     }
