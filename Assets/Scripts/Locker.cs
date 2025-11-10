@@ -1,4 +1,7 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,10 +9,13 @@ public class Locker : MonoBehaviour
 {
     [SerializeField]
     private PlayerManager _playerManager;
+
+    [SerializeField]
+    private TextMeshProUGUI _lockedText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _lockedText.enabled = false;
     }
 
     // Update is called once per frame
@@ -20,9 +26,23 @@ public class Locker : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_playerManager.hasKey)
+        if (_playerManager.atSpawn)
         {
-            Destroy(gameObject);
+            if (_playerManager.hasKey)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                StartCoroutine(LockedMessage());
+            }
         }
+    }
+
+    private IEnumerator LockedMessage()
+    {
+        _lockedText.enabled = true;
+        yield return new WaitForSeconds(2);
+        _lockedText.enabled = false;
     }
 }
