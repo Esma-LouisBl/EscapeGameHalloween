@@ -9,10 +9,12 @@ public class Enemy : MonoBehaviour
     private Light _light;
     [SerializeField]
     private AudioSource _audioSource;
+    [SerializeField]
+    private PlayerManager _playerManager;
     
     public bool hasSeenPlayer = false, lookingAtPlayer = false;
     private int _time;
-    private bool _needingNumber = true, _isWaiting = false, _needToLookPlayer = false, _feint;
+    private bool _needingNumber = true, _isWaiting = false, _needToLookPlayer = false, _feint, _fatalBehaviour;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,32 +25,42 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_needingNumber && !_isWaiting)
+        if (_playerManager.parkingBrake && !_fatalBehaviour)
         {
-            _isWaiting = true;
-            StartCoroutine(Wait(_time));
+            _fatalBehaviour = true;
+            TurnBackFatal();
         }
 
-        else if (_needingNumber && !_isWaiting) //generation du temps d'attente et feinte ou non
+        else
         {
-            _time = Random.Range(10, 21);
-            _needingNumber = false;
-
-            int r = Random.Range(0, 2);
-            if (r == 0)
+            if (!_needingNumber && !_isWaiting)
             {
-                _feint = false;
+                _isWaiting = true;
+                StartCoroutine(Wait(_time));
             }
-            else
-            {
-                _feint = true;
-            }
-        }
 
-        if (_needToLookPlayer)
-        {
-            _needToLookPlayer = false;
-            StartCoroutine(StayAtPlayer());
+            else if (_needingNumber && !_isWaiting) //generation du temps d'attente et feinte ou non
+            {
+                _time = Random.Range(10, 21);
+                _needingNumber = false;
+
+                int r = Random.Range(0, 2);
+                if (r == 0)
+                {
+                    _feint = false;
+                }
+                else
+                {
+                    _feint = true;
+                }
+            }
+
+
+            if (_needToLookPlayer)
+            {
+                _needToLookPlayer = false;
+                StartCoroutine(StayAtPlayer());
+            }
         }
     }
 
@@ -128,5 +140,26 @@ public class Enemy : MonoBehaviour
         }
         _needingNumber = true;
         _isWaiting = false;
+    }
+    private void TurnBackFatal()
+    {
+        _audioSource.Play();
+        {
+            StartCoroutine(FatalRotating());
+        }
+    }
+    private IEnumerator FatalRotating()
+    {
+        for (int i = 0; i < 180; i++)
+        {
+            _enemyTransform.Rotate(0, 1, 0);
+            _light.intensity += 10;
+            yield return new WaitForSeconds(.015f);
+        }
+
+        _playerManager.gameOver = true;
+        _playerManager.playerCanMove = false;
+        StartCoroutine(_playerManager.Screamer());
+        
     }
 }

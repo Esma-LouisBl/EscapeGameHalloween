@@ -86,8 +86,8 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
     }
-    
-    private IEnumerator Screamer()
+
+    public IEnumerator Screamer()
     {
         _audioSource.Play();
         yield return new WaitForSeconds(2.5f);

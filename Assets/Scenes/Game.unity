@@ -2953,6 +2953,7 @@ MonoBehaviour:
   _enemyTransform: {fileID: 1067246807}
   _light: {fileID: 1849601407}
   _audioSource: {fileID: 1067246809}
+  _playerManager: {fileID: 1998384740}
   hasSeenPlayer: 0
   lookingAtPlayer: 0
 --- !u!82 &1067246809
