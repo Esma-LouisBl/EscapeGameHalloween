@@ -11,6 +11,7 @@ public class SpatialPoint : MonoBehaviour
     private GameObject _text;
 
     private Vector3 _range;
+    [SerializeField] private AudioSource _audioSource;
 
     [SerializeField]
     private PlayerManager _playerManager;
@@ -43,11 +44,13 @@ public class SpatialPoint : MonoBehaviour
 
     private IEnumerator Moving()
     {   
+        _audioSource.Play();
         while (_playerTransform.position != _destinationTransform.position)
         {
             _playerTransform.position = _playerTransform.position + _range;
             yield return new WaitForSeconds(.01f);
         }
+        _audioSource.Stop();
 
         _playerManager.atSpawn = false;
     }

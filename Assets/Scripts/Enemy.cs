@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
         else if (_needingNumber && !_isWaiting) //generation du temps d'attente et feinte ou non
         {
-            _time = Random.Range(10, 41);
+            _time = Random.Range(10, 21);
             _needingNumber = false;
 
             int r = Random.Range(0, 2);
