@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private Transform _playerTransform;
 
+    public bool hasKey = false;
+
     [SerializeField]
     private Enemy _enemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

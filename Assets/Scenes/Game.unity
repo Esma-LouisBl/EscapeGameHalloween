@@ -2091,6 +2091,7 @@ GameObject:
   - component: {fileID: 1501205966}
   - component: {fileID: 1501205965}
   - component: {fileID: 1501205964}
+  - component: {fileID: 1501205967}
   m_Layer: 0
   m_Name: Locker
   m_TagString: Untagged
@@ -2192,6 +2193,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501205962}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1501205967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1501205962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78049f05de64c1342804e4626ecfcf3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Locker
+  _playerManager: {fileID: 1998384740}
 --- !u!1 &1523528873
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,6 +2833,7 @@ MonoBehaviour:
   _moveForward: {fileID: 1523528873}
   _moveToRight: {fileID: 1852772829}
   _playerTransform: {fileID: 1036736594}
+  hasKey: 0
   _enemy: {fileID: 1067246808}
 --- !u!4 &1998384741
 Transform:
