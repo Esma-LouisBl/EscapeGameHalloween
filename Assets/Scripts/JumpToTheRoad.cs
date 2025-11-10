@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class JumpToTheRoad : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerManager _playerManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,6 +20,13 @@ public class JumpToTheRoad : MonoBehaviour
 
     private void OnMouseDown()
     {
-        SceneManager.LoadSceneAsync(3);
+        if (_playerManager.parkingBrake)
+        {
+            SceneManager.LoadSceneAsync(3);
+        }
+        else
+        {
+            SceneManager.LoadSceneAsync(4);
+        }
     }
 }

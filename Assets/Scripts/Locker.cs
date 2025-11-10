@@ -56,7 +56,7 @@ public class Locker : MonoBehaviour
         _audioSource.clip = _unlocked;
         _audioSource.Play();
         yield return new WaitForSeconds(_unlocked.length);
-        _playerManager._lockerBroken = true;
+        _playerManager.lockerBroken = true;
         Destroy(gameObject);
     }
 }

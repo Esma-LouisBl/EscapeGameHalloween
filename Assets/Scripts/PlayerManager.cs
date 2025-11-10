@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
-    public bool hasKey = false, _lockerBroken, gameOver = false, playerCanMove = false;
+    public bool hasKey = false, lockerBroken, parkingBrake, gameOver = false, playerCanMove = false;
 
     [SerializeField]
     private Enemy _enemy;
@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour
             }
         }
 
-        if (_lockerBroken)
+        if (lockerBroken)
         {
             _jumpToRoad.SetActive(true);
         }
