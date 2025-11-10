@@ -32,12 +32,11 @@ public class Brake : MonoBehaviour
     private IEnumerator PullingBrake()
     {
         _audioSource.Play();
+        _playerManager.parkingBrake = true;
         for (int i = 0; i < 85; i++)
         {
-            _transform.Rotate(1, 0, 0);
+            _transform.Rotate(0, 0, -1);
             yield return new WaitForSeconds(0.01f);
         }
-
-        _playerManager.parkingBrake = true;
     }
 }
