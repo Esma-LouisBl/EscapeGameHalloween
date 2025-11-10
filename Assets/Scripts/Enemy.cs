@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,8 +9,6 @@ public class Enemy : MonoBehaviour
     private Light _light;
     [SerializeField]
     private AudioSource _audioSource;
-    [SerializeField]
-    private AudioResource _returning, screamer;
     
     public bool hasSeenPlayer = false, lookingAtPlayer = false;
     private int _time;

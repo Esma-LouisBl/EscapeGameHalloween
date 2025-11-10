@@ -12,6 +12,8 @@ public class Locker : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI _lockedText;
+    [SerializeField]
+    private AudioSource _audioSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,6 +33,7 @@ public class Locker : MonoBehaviour
             if (_playerManager.hasKey)
             {
                 Destroy(gameObject);
+                _audioSource.Play();
             }
             else
             {

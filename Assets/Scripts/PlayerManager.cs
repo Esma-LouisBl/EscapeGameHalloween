@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     private GameObject _goBackButton, _moveForward, _moveToRight;
     [SerializeField]
     private Transform _playerTransform;
+    [SerializeField]
+    private AudioSource _audioSource;
 
     public bool hasKey = false;
 
@@ -38,7 +40,7 @@ public class PlayerManager : MonoBehaviour
 
             if (_enemy.lookingAtPlayer)
             {
-                SceneManager.LoadSceneAsync(2);
+                StartCoroutine(Screamer());
             }
         }
 
@@ -68,5 +70,12 @@ public class PlayerManager : MonoBehaviour
             _playerTransform.Rotate(0, -1, 0);
             yield return new WaitForSeconds(0.01f);
         }
+    }
+    
+    private IEnumerator Screamer()
+    {
+        _audioSource.Play();
+        yield return new WaitForSeconds(2.5f);
+        SceneManager.LoadSceneAsync(2);
     }
 }

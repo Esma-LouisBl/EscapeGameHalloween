@@ -9,13 +9,15 @@ public class Candies : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+    [SerializeField] private AudioClip _eating, _key;
+    
     private int _clickNumber = 0;
 
     private bool _canClick = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        _audioSource.clip = _eating;
     }
 
     // Update is called once per frame
@@ -31,14 +33,16 @@ public class Candies : MonoBehaviour
             switch (_clickNumber)
             {
                 case 3:
+                    _audioSource.clip = _key;
                     _playerManager.hasKey = true;
                     break;
                 case < 3:
                     _clickNumber++;
-                    _audioSource.Play();
                     StartCoroutine(Cooldown());
                     break;
             }
+            
+            _audioSource.Play();
             
         }
     }
