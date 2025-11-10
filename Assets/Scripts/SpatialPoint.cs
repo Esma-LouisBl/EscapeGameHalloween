@@ -33,11 +33,11 @@ public class SpatialPoint : MonoBehaviour
 
         if (gameObject.CompareTag("TurnRight"))
         {
-            _playerManager.RotateToRight();
+            // _playerManager.RotateToRight();
         }
         if (gameObject.CompareTag("TurnLeft"))
         {
-            _playerManager.RotateToLeft();
+            // _playerManager.RotateToLeft();
         }
     }
 
