@@ -7,13 +7,13 @@ public class PlayerManager : MonoBehaviour
     public bool atSpawn;
 
     [SerializeField]
-    private GameObject _goBackButton, _moveForward, _moveToRight;
+    private GameObject _goBackButton, _moveForward, _moveToRight, _jumpToRoad;
     [SerializeField]
     private Transform _playerTransform;
     [SerializeField]
     private AudioSource _audioSource;
 
-    public bool hasKey = false, gameOver = false, playerCanMove = false;
+    public bool hasKey = false, _lockerBroken, gameOver = false, playerCanMove = false;
 
     [SerializeField]
     private Enemy _enemy;
@@ -25,6 +25,9 @@ public class PlayerManager : MonoBehaviour
         _startEffect.SetActive(true);
         playerCanMove = false;
         atSpawn = true;
+        
+        _jumpToRoad.SetActive(false);
+        
         StartCoroutine(LaunchingGame());
     }
 
@@ -49,6 +52,11 @@ public class PlayerManager : MonoBehaviour
                 playerCanMove = false;
                 StartCoroutine(Screamer());
             }
+        }
+
+        if (_lockerBroken)
+        {
+            _jumpToRoad.SetActive(true);
         }
 
     }
