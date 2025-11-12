@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour
     private Light _light;
     [SerializeField]
     private AudioSource _audioSource;
+
+    public Animator enemyAnimator;
     [SerializeField]
     private PlayerManager _playerManager;
     
@@ -69,10 +71,12 @@ public class Enemy : MonoBehaviour
         _audioSource.Play();
         if (_feint)
         {
+            enemyAnimator.SetTrigger("Finte");
             StartCoroutine(FeintRotating());
         }
         else
         {
+            enemyAnimator.SetTrigger("Look");
             StartCoroutine(Rotating());
         }
     }

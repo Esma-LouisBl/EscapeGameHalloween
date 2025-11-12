@@ -89,6 +89,7 @@ public class PlayerManager : MonoBehaviour
 
     public IEnumerator Screamer()
     {
+        _enemy.enemyAnimator.SetTrigger("Pasenplace");
         _audioSource.Play();
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadSceneAsync(2);

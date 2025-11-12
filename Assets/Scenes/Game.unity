@@ -3145,7 +3145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c4f27681f6b1864c9cade2e28673c32, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.374
+      value: -2.171
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4c4f27681f6b1864c9cade2e28673c32, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3731,6 +3731,7 @@ MonoBehaviour:
   _enemyTransform: {fileID: 1067246807}
   _light: {fileID: 1849601407}
   _audioSource: {fileID: 1067246809}
+  enemyAnimator: {fileID: 2040071585}
   _playerManager: {fileID: 1998384740}
   hasSeenPlayer: 0
   lookingAtPlayer: 0
@@ -4293,7 +4294,7 @@ Transform:
   m_GameObject: {fileID: 1287052231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.8346696, z: -0, w: 0.550751}
-  m_LocalPosition: {x: -0.38204, y: -1.657106, z: 3.4986}
+  m_LocalPosition: {x: -2.17904, y: -1.657106, z: 3.4986}
   m_LocalScale: {x: 113.14592, y: 113.14592, z: 113.14592}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6020,7 +6021,7 @@ Transform:
   m_GameObject: {fileID: 1971625438}
   serializedVersion: 2
   m_LocalRotation: {x: 0.48046798, y: -0.2579409, z: -0.0063048443, w: 0.83819884}
-  m_LocalPosition: {x: -0.302, y: -0.935, z: 3.459}
+  m_LocalPosition: {x: -2.099, y: -0.935, z: 3.459}
   m_LocalScale: {x: 0.6864657, y: 0.6864657, z: 0.6864657}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6678,6 +6679,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b4a7f873b5ddcb47aaac8c1a08579e4, type: 3}
   m_PrefabInstance: {fileID: 2036362599}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2040071585 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1270713622597465717, guid: c14b29c7cf622294eb44f86f068594d3, type: 3}
+  m_PrefabInstance: {fileID: 1538679504}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2065360926
 GameObject:
