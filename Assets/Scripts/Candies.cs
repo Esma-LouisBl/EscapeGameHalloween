@@ -9,6 +9,9 @@ public class Candies : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+    [SerializeField] private Transform _candiesTransform;
+    [SerializeField] private GameObject _candiesGO, _keyGO;
+    
     [SerializeField] private AudioClip _eating, _key;
     
     private int _clickNumber = 0;
@@ -18,6 +21,7 @@ public class Candies : MonoBehaviour
     void Start()
     {
         _audioSource.clip = _eating;
+        _keyGO.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,11 +38,21 @@ public class Candies : MonoBehaviour
             {
                 case 3:
                     _audioSource.clip = _key;
+                    _keyGO.SetActive(false);
                     _playerManager.hasKey = true;
                     _audioSource.Play();
                     _canClick = false;
                     break;
                 case < 3:
+                    if (_clickNumber < 2)
+                    {
+                        _candiesTransform.Translate(0, -0.3f, 0);
+                    }
+                    else
+                    {
+                        _candiesGO.SetActive(false);
+                        _keyGO.SetActive(true);
+                    }
                     _clickNumber++;
                     StartCoroutine(Cooldown());
                     _audioSource.Play();
