@@ -23,9 +23,13 @@ public class Brake : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (!_playerManager.parkingBrake)
+        if (_playerManager.atSpawn)
         {
-            StartCoroutine(PullingBrake());
+            if (!_playerManager.parkingBrake)
+            {
+                StartCoroutine(PullingBrake());
+            }
+            
         }
     }
 
