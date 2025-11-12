@@ -148,6 +148,7 @@ public class Enemy : MonoBehaviour
     private void TurnBackFatal()
     {
         _audioSource.Play();
+        enemyAnimator.SetTrigger("Look");
         {
             StartCoroutine(FatalRotating());
         }
