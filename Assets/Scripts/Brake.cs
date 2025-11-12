@@ -23,7 +23,7 @@ public class Brake : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_playerManager.atSpawn)
+        if (!_playerManager.atSpawn)
         {
             if (!_playerManager.parkingBrake)
             {
