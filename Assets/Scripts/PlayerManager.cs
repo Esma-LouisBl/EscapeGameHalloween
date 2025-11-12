@@ -13,6 +13,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private AudioSource _audioSource;
 
+    [SerializeField] private Camera _screamerCam;
+
     public bool hasKey = false, lockerBroken, parkingBrake, gameOver = false, playerCanMove = false;
 
     [SerializeField]
@@ -22,6 +24,8 @@ public class PlayerManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _screamerCam.enabled = false;
+        
         _startEffect.SetActive(true);
         playerCanMove = false;
         atSpawn = true;
@@ -42,9 +46,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            _goBackButton.SetActive(true);
-            _moveForward.SetActive(false);
-            _moveToRight.SetActive(false);
+            if (!gameOver)
+            {
+                _goBackButton.SetActive(true);
+                _moveForward.SetActive(false);
+                _moveToRight.SetActive(false);
+            }
 
             if (_enemy.lookingAtPlayer && !gameOver)
             {
@@ -91,6 +98,8 @@ public class PlayerManager : MonoBehaviour
     {
         _enemy.enemyAnimator.SetTrigger("Pasenplace");
         _audioSource.Play();
+        _goBackButton.SetActive(false);
+        _screamerCam.enabled = true;
         yield return new WaitForSeconds(2.5f);
         SceneManager.LoadSceneAsync(2);
     }
