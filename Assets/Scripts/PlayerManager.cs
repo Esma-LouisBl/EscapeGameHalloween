@@ -41,17 +41,21 @@ public class PlayerManager : MonoBehaviour
         if (atSpawn)
         {
             _goBackButton.SetActive(false);
-            _moveForward.SetActive(true);
-            _moveToRight.SetActive(true);
+            if (!gameOver)
+            {
+                _moveForward.SetActive(true);
+                _moveToRight.SetActive(true);
+            }
         }
         else
         {
             if (!gameOver)
             {
                 _goBackButton.SetActive(true);
-                _moveForward.SetActive(false);
-                _moveToRight.SetActive(false);
             }
+
+            _moveForward.SetActive(false);
+            _moveToRight.SetActive(false);
 
             if (_enemy.lookingAtPlayer && !gameOver)
             {
